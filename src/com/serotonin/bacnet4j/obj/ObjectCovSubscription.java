@@ -138,7 +138,7 @@ public class ObjectCovSubscription implements Serializable {
      * are {@link Real}'s
      * and {@link ObjectType}'s mentioned in {@link ObjectCovSubscription#covThresholdRequired}.
      */
-    private final Real covIncrement;
+    private Real covIncrement;
 
     /**
      * Contains the last sent values per property identifier. It is used to determine if a COV notification should be
@@ -194,6 +194,10 @@ public class ObjectCovSubscription implements Serializable {
         if (left < 1)
             return 1;
         return left;
+    }
+
+    public void setCovIncrement(Real covIncrement) {
+        this.covIncrement = covIncrement;
     }
 
     /**

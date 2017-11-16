@@ -343,6 +343,39 @@ public class BACnetObject implements Serializable {
         }
     }
 
+    public void addCovSubscriptionWithCovIncrement(Address from, OctetString linkService, UnsignedInteger subscriberProcessIdentifier,
+                                   Boolean issueConfirmedNotifications, UnsignedInteger lifetime, Real covThreshold) throws BACnetServiceException {
+        synchronized (covSubscriptions) {
+            ObjectCovSubscription sub = findCovSubscription(from, subscriberProcessIdentifier);
+            boolean confirmed = issueConfirmedNotifications.booleanValue();
+            if (covThreshold == null) {
+                covThreshold = this.getCovIncrement();
+            }
+            if (sub == null) {
+                // Ensure that this object is valid for COV notifications.
+                if (!ObjectCovSubscription.sendCovNotification(id.getObjectType(), null, this.getCovIncrement()))
+                    throw new BACnetServiceException(ErrorClass.services, ErrorCode.covSubscriptionFailed,
+                            "Object is invalid for COV notifications");
+
+                if (confirmed) {
+                    // If the peer wants confirmed notifications, it must be in the remote device list.
+                    RemoteDevice d = localDevice.getRemoteDevice(from);
+                    if (d == null)
+                        throw new BACnetServiceException(ErrorClass.services, ErrorCode.covSubscriptionFailed,
+                                "From address not found in remote device list. Cannot send confirmed notifications");
+                }
+
+                sub = new ObjectCovSubscription(from, linkService, subscriberProcessIdentifier, covThreshold);
+                covSubscriptions.add(sub);
+            }
+
+            sub.setIssueConfirmedNotifications(issueConfirmedNotifications.booleanValue());
+            sub.setExpiryTime(lifetime.intValue());
+            sub.setCovIncrement(covThreshold);
+
+        }
+    }
+
     public Real getCovIncrement() {
         return (Real) properties.get(PropertyIdentifier.covIncrement);
     }

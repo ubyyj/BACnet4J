@@ -132,27 +132,27 @@ public class LocalDevice {
             // Set up the supported services indicators. Remove lines as services get implemented.
             ServicesSupported servicesSupported = new ServicesSupported();
             servicesSupported.setAll(true);
-            servicesSupported.setAcknowledgeAlarm(false);
-            servicesSupported.setGetAlarmSummary(false);
-            servicesSupported.setGetEnrollmentSummary(false);
-            servicesSupported.setAtomicReadFile(false);
-            servicesSupported.setAtomicWriteFile(false);
-            servicesSupported.setAddListElement(false);
-            servicesSupported.setRemoveListElement(false);
-            servicesSupported.setReadPropertyConditional(false);
-            servicesSupported.setDeviceCommunicationControl(false);
-            servicesSupported.setReinitializeDevice(false);
-            servicesSupported.setVtOpen(false);
-            servicesSupported.setVtClose(false);
-            servicesSupported.setVtData(false);
-            servicesSupported.setAuthenticate(false);
-            servicesSupported.setRequestKey(false);
-            servicesSupported.setTimeSynchronization(false);
-            servicesSupported.setReadRange(false);
-            servicesSupported.setUtcTimeSynchronization(false);
-            servicesSupported.setLifeSafetyOperation(false);
-            servicesSupported.setSubscribeCovProperty(false);
-            servicesSupported.setGetEventInformation(false);
+//            servicesSupported.setAcknowledgeAlarm(false);
+//            servicesSupported.setGetAlarmSummary(false);
+//            servicesSupported.setGetEnrollmentSummary(false);
+//            servicesSupported.setAtomicReadFile(false);
+//            servicesSupported.setAtomicWriteFile(false);
+//            servicesSupported.setAddListElement(false);
+//            servicesSupported.setRemoveListElement(false);
+//            servicesSupported.setReadPropertyConditional(false);
+//            servicesSupported.setDeviceCommunicationControl(false);
+//            servicesSupported.setReinitializeDevice(false);
+//            servicesSupported.setVtOpen(false);
+//            servicesSupported.setVtClose(false);
+//            servicesSupported.setVtData(false);
+//            servicesSupported.setAuthenticate(false);
+//            servicesSupported.setRequestKey(false);
+//            servicesSupported.setTimeSynchronization(false);
+//            servicesSupported.setReadRange(false);
+//            servicesSupported.setUtcTimeSynchronization(false);
+//            servicesSupported.setLifeSafetyOperation(false);
+//            servicesSupported.setSubscribeCovProperty(false);
+//            servicesSupported.setGetEventInformation(false);
             configuration.setProperty(PropertyIdentifier.protocolServicesSupported, servicesSupported);
 
             // Set up the object types supported.
